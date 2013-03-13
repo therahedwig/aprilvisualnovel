@@ -17,8 +17,8 @@ init -1 python hide:
 
     ## These control the width and height of the screen.
 
-    config.screen_width = 800
-    config.screen_height = 600
+    config.screen_width = 1200
+    config.screen_height = 800
 
     ## This controls the title of the window, when Ren'Py is
     ## running in a window.
@@ -40,44 +40,44 @@ init -1 python hide:
     ## The theme function takes a number of parameters that can
     ## customize the color scheme.
 
-    theme.glow(
-        ## Theme: Glow
-        ## Color scheme: Fine China
+    theme.diamond(
+        ## Theme: Diamond
+        ## Color scheme: Favorite Jeans
                                     
         ## The color of an idle widget face.
-        widget = "#6A7183",
+        widget = "#8699a7",
 
         ## The color of a focused widget face.
-        widget_hover = "#1A2B47",
+        widget_hover = "#9eb1ad",
 
         ## The color of the text in a widget.
-        widget_text = "#C9C9CB",
+        widget_text = "#dcdfd6",
 
         ## The color of the text in a selected widget. (For
         ## example, the current value of a preference.)
-        widget_selected = "#E3E3E4",
+        widget_selected = "#ffffff",
 
         ## The color of a disabled widget face. 
-        disabled = "#ADB9CC",
+        disabled = "#919994",
 
         ## The color of disabled widget text.
-        disabled_text = "#DFBA14",
+        disabled_text = "#B6BFB9",
 
         ## The color of informational labels.
-        label = "#39435E",
+        label = "#ffffff",
 
         ## The color of a frame containing widgets.
-        frame = "#ADB9CC",
+        frame = "#6f7571",
 
         ## The background of the main menu. This can be a color
         ## beginning with '#', or an image filename. The latter
         ## should take up the full height and width of the screen.
-        mm_root = "#F7F7FA",
+        mm_root = "#b0b8ba",
 
         ## The background of the game menu. This can be a color
         ## beginning with '#', or an image filename. The latter
         ## should take up the full height and width of the screen.
-        gm_root = "#F7F7FA",
+        gm_root = "#b0b8ba",
 
         ## If this is True, the in-game window is rounded. If False,
         ## the in-game window is square.
