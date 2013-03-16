@@ -1,4 +1,4 @@
-Sat Mar 16 13:01:11 2013
+Sat Mar 16 17:24:16 2013
 Linux-3.5.0-17-generic-x86_64-with-debian-wheezy-sid
 Ren'Py 6.15.1.275
 A Ren'Py Game 0.0
@@ -194,11 +194,11 @@ Texture testing:
 Performance test:
 - Target is 5 frames in 0.333333333333 seconds.
 - Frame drawn at 0.000000 seconds.
-- Frame drawn at 0.046000 seconds.
-- Frame drawn at 0.124000 seconds.
-- Frame drawn at 0.158000 seconds.
-- Frame drawn at 0.210000 seconds.
-- 0.210000 seconds to render 5 frames.
+- Frame drawn at 0.031000 seconds.
+- Frame drawn at 0.103000 seconds.
+- Frame drawn at 0.148000 seconds.
+- Frame drawn at 0.242000 seconds.
+- 0.242000 seconds to render 5 frames.
 Deallocating textures.
 Done deallocating textures.
 About to quit GL.

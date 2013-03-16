@@ -17,6 +17,7 @@ image miwa diss = "sprites/cfv_april_miwa_dissapoint.png"
 image miwa think = "sprites/cfv_april_miwa_thinking.png"
 image miwa appal = "sprites/cfv_april_miwa_appaled.png"
 image miwa angry = "sprites/cfv_april_miwa_angry_defence.png"
+image miwa point = "sprites/cfv_april_miwa_angry_offence.png"
 image miwa shock = "sprites/cfv_april_miwa_shocked.png"
 image miwa embar = "sprites/cfv_april_miwa_embarassed.png"
 
@@ -86,11 +87,12 @@ label start:
     mis "C'mon!"
     
     #Storeroom background, Misaki figure appears.
-    scene bg store
-    show miwa shock at right
+    scene bg store with fade
+    show miwa shock at left
+    show misa base at right
     miw "There's noone here."
     mis "But that's impossible..."
-    show miwa think at right
+    show miwa think at left
     miw "Hm... Let's see what we can find."
 label investigate:    
     #Player has the ability to check things out now: *door, breadcrumbs, the stocks*
@@ -106,6 +108,7 @@ label investigate:
 
 label qbread:
     #miwa determined
+    show miwa point at left
     miw "Aha! Breadcrumbs! Get me some iodine!"
     mis "What? You mean to check for starch?"
     show miwa base at left
@@ -158,11 +161,31 @@ label qfireescape:
         jump investigate
 label investigateconclude:
     #conclusion
-    scene bg cc
-    "They are not here."
-    
-    #Kai asking who should go with Miwa
+    #mis "Let's give up, there's nothing here..."
+    scene bg cc with fade
+    kai "And?"
     show kai base at left
+    show miwa diss at right
+    miw "Dead end..."
+    #Misaki sad
+    show misa base at right
+    show miwa base at center with move
+    miw "Hey..."
+    show miwa prop at center
+    miw "Don't worry! We'll find the thief."
+    kai "Miwa."
+    kai "Maybe you're better off looking for the thief outside."
+    #miwa mirrored
+    show miwa prop at center
+    miw "Good plan!"
+    show miwa think at left
+    show kai base at center
+    with move
+    miw "Where should I start...hm..."
+    hide miwa with disolve
+    kai "Tokura!"
+    show kai base at left with move
+    #Kai asking who should go with Miwa
     show misa base at right
     kai "Someone should go with him, the last time I left him to his own devices, I found him tied up by the backstreet boys."
     mis "Tell me why?"
@@ -177,15 +200,73 @@ label investigateconclude:
             jump kairoute
         
 label misakiroute:
-    scene bg under
-    #Misaki route
+    scene bg park
+    mis "Miwa, I'm coming with you!"
+    miw "Ah?"
+    miw "Oh, I didn't realise you'd want to find this guy too"
+    Misaki looks sad
+    miw "(Damnit...)"
+    miw "(They don't have many expressions, but a sad one is the last I would like to see on their faces...)"
+    miw "Let's do our best."
+    mis "Yeah..."
+    mis "Do you have any idea where to look?"
+    show miwa shock
+    miw "Ah..."
+    show miwa think
+    miw "Oracle Think-Tank is pretty expensive these days, isn't it?"
+    show misa base
+    mis "Yeah, it's a pretty popular clan. That kid had some SPs in his deck as well."
+    miw "Alright, there might be a place where I think they might know something..."
+    scene bg under with fade
     #Visiting Jun
-    show miwa appal at right
-    miw "It's not what it sounds like! Don't go thinking crazy things now!"
+    show miwa base center
+    show misa base left
+    miw "This is the spot."
+    mis "This place... they hold underground fights here, don't they?"
+    mis "How did you find it in the first place?"
+    jun "Miwa!"
+    show miwa shock at center
+    jun "I haven't seen you around lately!"
+    jun "Did you mind being tied up that much?"
+    mis "Oh, I suposse that answers my question."
+    show miwa appal at center
+    miw "What? "
+    extend "No!"
+    show miwa appal at center
+    miw "It's not what it sounds like!"
+    extend "Don't go thinking crazy things now!"
     #Misaki looks amused
     mis "Too late for that."
+    jun "You really have the best friends."
+    jun "But if you've come to deliver another one of his girlfriends, he isn't here right now."
+    miw "I'm not, don't worry."
+    miw "Where to start explaining..."
+    #screen fades to black for a bit
+    miw "So, we figured you might know something..."
+    jun "Hm..."
+    jun "I haven't heard of any decks being pawned yet,"
+    extend "and frankly noone here plays Think-tank."
+    jun "But, "
+    extend "the Foo-Fighters recruited a real Think-tank heavy weight recently."
+    jun "You might want to ask them if they know anything."
+    miw "I see..."
+    miw "Thanks!"
+    jun "Just visit more often, will you?"
+    miw "Right."
+    miw "Let's go!"
+    hide miwa
+    hide misa
+    jun "He didn even answer me, did he?"
+    
     #Visiting Ren
-    scene bg ffhqi
+    scene bg ffhqi with fade
+    miw "Now, let's see if we can find that guy..."
+    mis "Ah!"
+    miw "What is it?"
+    mis "Look"
+    #boy is shown
+    miw "No way."
+    
     #Misaki comes to the conclusion this was set up by Kai somehow and goes out to murder him.
     ren "Ah? Where is everyone?"
     "Boy" "They left for some reason."
@@ -193,15 +274,35 @@ label misakiroute:
     asa "Ren-sama! Why did you try to get that Tokura girl here anyway?"
     ren "Asaka!"
     ren "Ah, I needed some help with moving furniture!"
-    asa ""
+    ren "I can't ask that of you, my dear..."
+    asa "What? I'm an expert a moving things!"
+    ren "Really?"
+    asa "Why yes, I'm like,"
+    extend "a genuine moverella!"
+    ren "Oh, well in that case..."
     #scene fade
-    scene bg cc
+    scene bg cc with fade
+    mis "Kai Toshiki!"
+    extend "Did you think you could get away with this?"
+    kai "Why the hell are you yelling at me, Tokura?"
+    mis "You knew about this, you!"
+    kam "What the hell?"
+    miw "I'm not really sure what is going on either..."
+    kam "..."
+    kam "Want me to hold him while you punch him?"
+    show miwa prop
+    miw "Aren't you a little short for that?"
+    kam "That's what you think."
     kai "Maybe it's time you learn the world doesn't revolve around you Tokura!"
     mis "Really, that's rich coming from you!"
     miw "I don't think she needs any help though..."
     kam "I guess you're right."
     kam "Hey, you up for a game?"
     miw "Sure."
+    hide scene bg cc with fade
+    "Thankfully, Kai and Misaki got past their misunderstanding eventually."
+    "Man, this day was strange..."
+    "Congratulations, you've finished Misaki's route!"
     $ persistent.misaki_fin = True
     #check if both endings played, goto secret ending
     if persistent.misaki_fin and persistent.kai_fin:
@@ -239,8 +340,14 @@ label kairoute:
     miw "Really?"
     ren "Shop assistant huh?"
     ren "You'll do, c' mon."
-    show miwa base at center
+    show miwa shock at center
     miw "huh?"
+    #ren ""
+    #miw ""
+    "Ren is a little strange, but we had fun."
+    "Kinda had muscleaches next day though..."
+    "Man, this day was strange..."
+    "Congratulations, you've finished Kai's route!"
 
     $ persistent.kai_fin = True
     #check if both endings played, then goto secret ending.
@@ -250,7 +357,50 @@ label kairoute:
         return
     
 label kaichihoneymoon:
-    scene bg hotel
-    "Blabla"
+    "You've finished both endings, I guess I should give you what you came for..."
+    "Alright, I'm ready."
+    scene bg hotel with fade
+    ai "Ah"
+    ai "Kai-kun"
+    kai "Aichi,"
+    extend "what the hell are you wearing?"
+    ai "Kai-kun! That should be obvious!"
+    #kai-kun looks disturbed now
+    ai "Despite me identifying like a boy, I look like a girl, so therefore I like dressing like one!"
+    ai "Kai-kun, don't you know anything about gender-politics?"
+    kai "Eh..."
+    ai "I knew I should've gone to Ren-san with this."
+    ai "At the least he's mature enough to... deal with my needs."
+    kai "W-what?"
+    ai "Sayonara, Kai-kun!"
+    #aichi goes off-screen
+    kai "What?"
+    #pause
+    ai "Kai-kun?"
+    #aichi moves on screen
+    ai "April-fools, Kai-kun!"
+    kai "What...?"
+    ai "April-fools!"
+    kai "This was fake."
+    extend " Good."
+    ai "I didn't scare you too much, did I?"
+    kai "No. You didn't."
+    extend " But."
+    extend "What was this about Ren being more mat-"
+    ai "Ah, Kai-kun?"
+    ai "Would you mind if I... slip into something more comfortable?"
+    kai "-ure, what?"
+    ai "I would like to go change into my regular clothes now,"
+    extend "this is really embarassing to wear in public..."
+    kai "Eh."
+    kai "Yes, you do that!"
+    #Aichi leaves
+    kai "(What the flying fuck?)"
+    
+    hide scene bg hotel with fade
+    "Happy April Fools, everyone!"
+    "Credits: Story/Programming/Art: Wolthera (wolthera.tumblr.com) (go congratulate her, April the first is her birthday!)"
+    "Testing:"
+    ""
     
     return
