@@ -21,9 +21,51 @@ image miwa point = "sprites/cfv_april_miwa_angry_offence.png"
 image miwa shock = "sprites/cfv_april_miwa_shocked.png"
 image miwa embar = "sprites/cfv_april_miwa_embarassed.png"
 
+image miwa basem = "sprites/cfv_april_miwa_basic_m.png"
+image miwa propm = "sprites/cfv_april_miwa_propose_m.png"
+image miwa dissm = "sprites/cfv_april_miwa_dissapoint_m.png"
+image miwa thinkm = "sprites/cfv_april_miwa_thinking_m.png"
+image miwa appalm = "sprites/cfv_april_miwa_appaled_m.png"
+image miwa angrym = "sprites/cfv_april_miwa_angry_defence_m.png"
+image miwa pointm = "sprites/cfv_april_miwa_angry_offence_m.png"
+image miwa shockm = "sprites/cfv_april_miwa_shocked_m.png"
+image miwa embarm = "sprites/cfv_april_miwa_embarassed_m.png"
+
 image kai base = "sprites/cfv_april_kai_base.png"
+image kai basem = "sprites/cfv_april_kai_base.png"
+#kai annoyed
+#kai happy
+#kai confused
 
 image misa base = "sprites/cfv_april_misaki_base.png"
+image misa basem = "sprites/cfv_april_misaki_base_m.png"
+image misa shock = "sprites/cfv_april_misaki_shocked.png"
+image misa shockm = "sprites/cfv_april_misaki_shocked_m.png"
+image misa smile = "sprites/cfv_april_misaki_smile.png"
+image misa smilem = "sprites/cfv_april_misaki_smile_m.png"
+image misa sad = "sprites/cfv_april_misaki_sad.png"
+image misa sadm = "sprites/cfv_april_misaki_sad_m.png"
+image misa anno = "sprites/cfv_april_misaki_annoyed.png"
+image misa annom = "sprites/cfv_april_misaki_annoyed_m.png"
+image misa angry = "sprites/cfv_april_misaki_angry.png"
+image misa angrym = "sprites/cfv_april_misaki_angry_m.png"
+
+#aichi base
+#aichi shock
+#aichi pens
+#aichi smile
+
+#kamui base
+#kamui yell
+
+#jun base
+#jun think
+
+#asaka upset
+
+#ren base
+#ren smile
+#ren regard
 
 # Declare characters used by this game.
 define e = Character('Eileen', color="#c8ffc8")
@@ -55,21 +97,26 @@ label start:
     show misa base at left
     mis "What is going on?"
     "Boy" "My deck is missing!"
+    show misa basem
     mis "Ah, everyone, did anyone see this boy's deck? The clan is..."
     "Boy" " Oracle Think-Tank."
     #Misaki looks shocked
+    show misa shock
     mis "...Oracle Think-Tank."
     #Miwa ace detective flashes on screen.
+    show text "Miwa: Ace-detective"
+    $ renpy.pause(10)
+    hide text "Miwa: Ace-detective"
     #Shop is visible with kai, misaki and miwa figures.
     show miwa base at left
-    show misa base at right
+    show misa basem at right
     miw "So this kid was distracted and poof, and someone nicked the deck while he wasn't looking?"
     mis "I saw that the boy was playing, and next thing his deck is stolen."
     miw " And neither you or the assistant-manager saw anything? Anyone leave the shop?"
     mis "No, not at all."
     miw "That's new."
     mis "Ayup."
-    show miwa think at left
+    show miwa think
     miw "Let's asume that there's nothing wrong with with your eyesight."
     #map of the shop
     miw "The boy was here when the deck got stolen, right?"
@@ -81,22 +128,24 @@ label start:
     miw "But you didn't see anybody leave, which means..."
     #The door is marked
     mis "They went into the storeroom?"
-    show miwa prop at left
+    show miwa prop
     miw "Exactly"
-    #Misaki realising something
+    show misa shockm
     mis "C'mon!"
     
     #Storeroom background, Misaki figure appears.
     scene bg store with fade
     show miwa shock at left
-    show misa base at right
+    show misa shockm at right
     miw "There's noone here."
     mis "But that's impossible..."
-    show miwa think at left
+    show miwa think
+    show misa basem
     miw "Hm... Let's see what we can find."
 label investigate:    
     #Player has the ability to check things out now: *door, breadcrumbs, the stocks*
-    show miwa think at left
+    show miwa think
+    show misa basem
     menu:
         miw "What shall we take a look at?"
         "Are those breadcrumbs?":
@@ -110,15 +159,18 @@ label qbread:
     #miwa determined
     show miwa point at left
     miw "Aha! Breadcrumbs! Get me some iodine!"
+    show misa shockm
     mis "What? You mean to check for starch?"
     show miwa base at left
     miw "Indeed, my dear Misaki!"
+    show misa annom
     #misaki annoyed
     mis "Can't you do something normal? Like, fingerprinting? Or going to the police?"
     show miwa prop at left
     miw "Well, that's elementary, isn't it? The police won't take us seriously at all! And what are we supossed to fingerprint in the first place?"
+    show misa basem
     mis "Right, but... Miwa, all bread contains starch, so iodine isn't going to solve this case."
-    #misaki embarrased
+    show misa annom
     mis "Besides, those are mine, I had a snack after changing the posters yesterday."
     show miwa diss at left
     miw "Fine."
@@ -130,9 +182,11 @@ label qbread:
 label qstocks:
     #the stocks
     show miwa base at left
+    show misa base at right
     miw "(Misaki is looking at the stocks...)"
     mis "If they stole a deck, who knows what else they've stolen"
     #Misaki looks relieved#
+    show misa basem
     mis "I can't see anything missing."
     #Miwa smiles
     show miwa prop at left
@@ -145,10 +199,13 @@ label qstocks:
 label qfireescape:
     #the fireescape
     miw "Can this door open?"
+    show misa shockm
     mis "Miwa, wait!"
     #picture of door opening, fire alarm starts to ring
+    show misa angrym
     mis "Now you've done it!"
     #screen goes black. firealarm cuts off.
+    show misa annom
     mis "Next time, ask if you can open the Fire exit."
     show miwa embar at left
     miw "Sorry."
@@ -162,36 +219,43 @@ label qfireescape:
 label investigateconclude:
     #conclusion
     #mis "Let's give up, there's nothing here..."
-    scene bg cc with fade
-    kai "And?"
+    scene bg cc
     show kai base at left
-    show miwa diss at right
+    with fade
+    show miwa dissm at offscreenright
+    show misa basem at offscreenright
+    kai "And?"
+    show miwa dissm at right with move
     miw "Dead end..."
     #Misaki sad
-    show misa base at right
-    show miwa base at center with move
+    show misa sadm at right 
+    show miwa base at center
+    with move
     miw "Hey..."
     show miwa prop at center
     miw "Don't worry! We'll find the thief."
     kai "Miwa."
     kai "Maybe you're better off looking for the thief outside."
     #miwa mirrored
-    show miwa prop at center
+    show miwa basem at center
     miw "Good plan!"
-    show miwa think at left
+    show miwa thinkm at left
     show kai base at center
     with move
     miw "Where should I start...hm..."
-    hide miwa with disolve
+    #hide miwa with disolve
+    show miwa thinkm at offscreenleft with move
     kai "Tokura!"
+    show misa basem
     show kai base at left with move
     #Kai asking who should go with Miwa
-    show misa base at right
     kai "Someone should go with him, the last time I left him to his own devices, I found him tied up by the backstreet boys."
+    show misa smilem
     mis "Tell me why?"
     kai "No."
     kai "Ain't nothing but a headache."
     kai "Shall I go?"
+    show misa basem
     mis "Hm..."
     menu:
         "I'll go.":
@@ -201,59 +265,80 @@ label investigateconclude:
         
 label misakiroute:
     scene bg park
+    show miwa base at center
+    show misa base at left
     mis "Miwa, I'm coming with you!"
+    show miwa shockm
     miw "Ah?"
+    show miwa basem
     miw "Oh, I didn't realise you'd want to find this guy too"
-    Misaki looks sad
+    #Misaki looks sad
+    show misa sad
+    show miwa thinkm
     miw "(Damnit...)"
     miw "(They don't have many expressions, but a sad one is the last I would like to see on their faces...)"
+    show miwa propm
     miw "Let's do our best."
     mis "Yeah..."
+    show misa anno
     mis "Do you have any idea where to look?"
-    show miwa shock
+    show miwa shockm
     miw "Ah..."
-    show miwa think
+    show miwa thinkm
     miw "Oracle Think-Tank is pretty expensive these days, isn't it?"
     show misa base
     mis "Yeah, it's a pretty popular clan. That kid had some SPs in his deck as well."
     miw "Alright, there might be a place where I think they might know something..."
     scene bg under with fade
     #Visiting Jun
-    show miwa base center
-    show misa base left
+    show miwa base at center
+    show misa base at left
     miw "This is the spot."
+    show miwa basem
     mis "This place... they hold underground fights here, don't they?"
     mis "How did you find it in the first place?"
     jun "Miwa!"
     show miwa shock at center
     jun "I haven't seen you around lately!"
     jun "Did you mind being tied up that much?"
+    show misa anno
     mis "Oh, I suposse that answers my question."
-    show miwa appal at center
+    show miwa appalm at center
     miw "What? "
     extend "No!"
-    show miwa appal at center
     miw "It's not what it sounds like!"
-    extend "Don't go thinking crazy things now!"
+    extend " Don't go thinking crazy things now!"
+    show miwa angrym
+    show misa smile
     #Misaki looks amused
     mis "Too late for that."
     jun "You really have the best friends."
     jun "But if you've come to deliver another one of his girlfriends, he isn't here right now."
+    show misa base
+    show miwa embar
     miw "I'm not, don't worry."
+    show miwa think
     miw "Where to start explaining..."
     #screen fades to black for a bit
+    show miwa prop
     miw "So, we figured you might know something..."
+    show miwa base
     jun "Hm..."
     jun "I haven't heard of any decks being pawned yet,"
     extend "and frankly noone here plays Think-tank."
     jun "But, "
     extend "the Foo-Fighters recruited a real Think-tank heavy weight recently."
     jun "You might want to ask them if they know anything."
+    show miwa think
     miw "I see..."
+    show miwa basem
     miw "Thanks!"
     jun "Just visit more often, will you?"
     miw "Right."
+    show miwa propm
     miw "Let's go!"
+    show miwa basem at offscreenleft with move
+    show misa basem at offscreenleft with move
     hide miwa
     hide misa
     jun "He didn even answer me, did he?"
@@ -266,9 +351,25 @@ label misakiroute:
     mis "Look"
     #boy is shown
     miw "No way."
-    
+    "Boy" "Ah, you guys?!"
+    miw "Your deck was stolen, huh?"
+    miw "You know what I think?"
+    miw "your deck wasn stolen in the first place!"
+    "Boy" "-tchk"
+    miw "Instead, you took your deck with you!"
+    miw "Misaki, nor the submanager would have suspected you of stealing your own deck!"
+    mis "How dare you! I can't believe we favour the same clan!"
+    "Boy" "Very nice, Detective."
+    "Boy" "But tell me, what would be my motive?"
+    miw "Well that's-"
+    miw "Uhm..."
+    mis "Suzugamori Ren..."
+    mis "But that means!"
+    #misaki runs off
+    miw "Hey, where you going to?"
+    #Miwa runs off after her
     #Misaki comes to the conclusion this was set up by Kai somehow and goes out to murder him.
-    ren "Ah? Where is everyone?"
+    ren "Ah? Where is Misakki?"
     "Boy" "They left for some reason."
     ren "Really? That's no fun..."
     asa "Ren-sama! Why did you try to get that Tokura girl here anyway?"
@@ -299,7 +400,7 @@ label misakiroute:
     kam "I guess you're right."
     kam "Hey, you up for a game?"
     miw "Sure."
-    hide scene bg cc with fade
+    #hide scene bg cc with fade
     "Thankfully, Kai and Misaki got past their misunderstanding eventually."
     "Man, this day was strange..."
     "Congratulations, you've finished Misaki's route!"
@@ -397,7 +498,7 @@ label kaichihoneymoon:
     #Aichi leaves
     kai "(What the flying fuck?)"
     
-    hide scene bg hotel with fade
+    #hide scene bg hotel with fade
     "Happy April Fools, everyone!"
     "Credits: Story/Programming/Art: Wolthera (wolthera.tumblr.com) (go congratulate her, April the first is her birthday!)"
     "Testing:"
