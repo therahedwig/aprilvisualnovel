@@ -1,7 +1,7 @@
-Wed Mar 20 11:34:30 2013
+Wed Mar 27 13:49:43 2013
 Linux-3.5.0-17-generic-x86_64-with-debian-wheezy-sid
 Ren'Py 6.15.1.275
-A Ren'Py Game 0.0
+Miwa: Ace Detective 1.0
 
 
 Windowed mode.
@@ -194,11 +194,11 @@ Texture testing:
 Performance test:
 - Target is 5 frames in 0.333333333333 seconds.
 - Frame drawn at 0.000000 seconds.
-- Frame drawn at 0.056000 seconds.
-- Frame drawn at 0.133000 seconds.
-- Frame drawn at 0.177000 seconds.
-- Frame drawn at 0.295000 seconds.
-- 0.295000 seconds to render 5 frames.
+- Frame drawn at 0.051000 seconds.
+- Frame drawn at 0.142000 seconds.
+- Frame drawn at 0.214000 seconds.
+- Frame drawn at 0.254000 seconds.
+- 0.254000 seconds to render 5 frames.
 Deallocating textures.
 Done deallocating textures.
 About to quit GL.

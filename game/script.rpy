@@ -10,8 +10,26 @@ image bg ffhq = "backgrounds/cfv_april_ffhq.png"
 image bg ffhqi = "backgrounds/cfv_april_ffhqinside.png"
 image bg ffhqr = "backgrounds/cfv_april_ffhqren.png"
 image bg hotel = "backgrounds/cfv_april_bar.png"
+image bg black = "sfx/black.png"
 
-image miwa base = "sprites/cfv_april_miwa_basic.png"
+image cg deckgrab  = "sfx/black.png"
+image cg yell  = "sfx/cg_stolen.png"
+image cg run  = "sfx/black.png"
+image cg kai  = "sfx/black.png"
+image cg aichi  = "sfx/black.png"
+
+image ikai  = "sfx/fx_kaishock.png"
+image imiwa  = "sfx/fx_miwashock.png"
+image imisa  = "sfx/fx_misashock.png"
+image logo_miwa = Image("sfx/logo_miwa.png")
+image logo_kaichi = Image("sfx/logo_kaichi.png")
+image ibread = "sfx/black.png"
+image istock = "sfx/black.png"
+image ifire = "sfx/black.png"
+image imagazine = "sfx/black.png"
+
+
+image miwa base = Image("sprites/cfv_april_miwa_basic.png", xanchor=0.3)
 image miwa prop = "sprites/cfv_april_miwa_propose.png"
 image miwa diss = "sprites/cfv_april_miwa_dissapoint.png"
 image miwa think = "sprites/cfv_april_miwa_thinking.png"
@@ -32,10 +50,11 @@ image miwa shockm = "sprites/cfv_april_miwa_shocked_m.png"
 image miwa embarm = "sprites/cfv_april_miwa_embarassed_m.png"
 
 image kai base = "sprites/cfv_april_kai_base.png"
-image kai basem = "sprites/cfv_april_kai_base.png"
-#kai annoyed
-#kai happy
-#kai confused
+image kai anno = "sprites/cfv_april_kai_annoyed.png"
+image kai skep = "sprites/cfv_april_kai_skeptical.png"
+image kai conf = "sprites/cfv_april_kai_confused.png"
+image kai vcon = "sprites/cfv_april_kai_very_confused.png"
+image kai happy = "sprites/cfv_april_kai_happy.png"
 
 image misa base = "sprites/cfv_april_misaki_base.png"
 image misa basem = "sprites/cfv_april_misaki_base_m.png"
@@ -50,7 +69,9 @@ image misa annom = "sprites/cfv_april_misaki_annoyed_m.png"
 image misa angry = "sprites/cfv_april_misaki_angry.png"
 image misa angrym = "sprites/cfv_april_misaki_angry_m.png"
 
-#aichi base
+image aichi base = "sprites/cfv_april_aichi_base.png"
+image aichi basem = "sprites/cfv_april_aichi_base.png"
+image aichi sbasem = "sprites/cfv_april_aichi_base.png"
 #aichi shock
 #aichi pens
 #aichi smile
@@ -81,35 +102,55 @@ define kam = Character('Kamui', color="#ef9a20")
 
 # The game starts here.
 label start:
+    $ sleft =  Position(xalign=0.15, yalign=1.0, xanchor=0.3, yanchor=1.0)
+    $ middle = Position(xalign=0.5, yalign=0.4, xanchor=0.5, yanchor=0.5)
+    $ sleftm = Position(xalign=0.15, yalign=1.0, xanchor=0.6, yanchor=1.0)
+    $ sright =  Position(xalign=0.85, yalign=1.0, xanchor=0.6, yanchor=1.0)
+    $ srightm = Position(xalign=0.85, yalign=1.0, xanchor=0.6, yanchor=1.0)
+    $ scenter = Position(xalign=0.5, yalign=1.0, xanchor=0.3, yanchor=1.0)
+    $ scenterm = Position(xalign=0.5, yalign=1.0, xanchor=0.6, yanchor=1.0)
+    $ flash = Fade(.25, 0, .75, color="#fff")
     $ in_bread = False
     $ in_stocks = False
     $ in_fire = False
     
     scene bg cc
+    show imisa at offscreenleft
+    show ikai at offscreenright
+    show imiwa at offscreenright
     "A shot of a deck being taken from table, and put into a bag."
     
     "Flash"
-    
+    scene cg yell
     "Boy" "my deck is gone!"
     #Closeups of Misaki, Kai and Miwa.#
+    show imisa at center with flash
+    show ikai at center with flash
+    show imiwa at center with flash
+    $ renpy.pause(10)
+    scene bg black with fade
     "And it was such a quiet day too..."
-    scene bg cc
-    show misa base at left
+    scene bg cc with fade
+    show misa base at sleft
     mis "What is going on?"
     "Boy" "My deck is missing!"
-    show misa basem
+    show misa basem at sleftm
     mis "Ah, everyone, did anyone see this boy's deck? The clan is..."
     "Boy" " Oracle Think-Tank."
     #Misaki looks shocked
-    show misa shock
+    show misa shock at sleft
     mis "...Oracle Think-Tank."
     #Miwa ace detective flashes on screen.
-    show text "Miwa: Ace-detective"
-    $ renpy.pause(10)
-    hide text "Miwa: Ace-detective"
+    scene bg black
+    show logo_miwa at middle
+    with flash
+    $ renpy.pause(30)
+    
     #Shop is visible with kai, misaki and miwa figures.
-    show miwa base at left
-    show misa basem at right
+    scene bg cc
+    show miwa base at sleft
+    show misa basem at sright
+    with fade
     miw "So this kid was distracted and poof, and someone nicked the deck while he wasn't looking?"
     mis "I saw that the boy was playing, and next thing his deck is stolen."
     miw " And neither you or the assistant-manager saw anything? Anyone leave the shop?"
@@ -135,8 +176,8 @@ label start:
     
     #Storeroom background, Misaki figure appears.
     scene bg store with fade
-    show miwa shock at left
-    show misa shockm at right
+    show miwa shock at sleft
+    show misa shockm at sright
     miw "There's noone here."
     mis "But that's impossible..."
     show miwa think
@@ -157,22 +198,22 @@ label investigate:
 
 label qbread:
     #miwa determined
-    show miwa point at left
+    show miwa point at sleft
     miw "Aha! Breadcrumbs! Get me some iodine!"
     show misa shockm
     mis "What? You mean to check for starch?"
-    show miwa base at left
+    show miwa base at sleft
     miw "Indeed, my dear Misaki!"
     show misa annom
     #misaki annoyed
     mis "Can't you do something normal? Like, fingerprinting? Or going to the police?"
-    show miwa prop at left
+    show miwa prop
     miw "Well, that's elementary, isn't it? The police won't take us seriously at all! And what are we supossed to fingerprint in the first place?"
     show misa basem
     mis "Right, but... Miwa, all bread contains starch, so iodine isn't going to solve this case."
     show misa annom
     mis "Besides, those are mine, I had a snack after changing the posters yesterday."
-    show miwa diss at left
+    show miwa diss
     miw "Fine."
     $ in_bread = True
     if in_stocks and in_fire and in_bread:
@@ -181,15 +222,15 @@ label qbread:
         jump investigate
 label qstocks:
     #the stocks
-    show miwa base at left
-    show misa base at right
+    show miwa base at sleft
+    show misa base at srightm
     miw "(Misaki is looking at the stocks...)"
     mis "If they stole a deck, who knows what else they've stolen"
     #Misaki looks relieved#
-    show misa basem
+    show misa basem at sright
     mis "I can't see anything missing."
     #Miwa smiles
-    show miwa prop at left
+    show miwa prop at sleft
     miw "That's good."
     $ in_stocks = True
     if in_stocks and in_fire and in_bread:
@@ -207,9 +248,9 @@ label qfireescape:
     #screen goes black. firealarm cuts off.
     show misa annom
     mis "Next time, ask if you can open the Fire exit."
-    show miwa embar at left
+    show miwa embar
     miw "Sorry."
-    show miwa think at left
+    show miwa think
     miw "(but we now know the thief didn't leave through here.)"
     $ in_fire = True
     if in_stocks and in_fire and in_bread:
@@ -220,26 +261,27 @@ label investigateconclude:
     #conclusion
     #mis "Let's give up, there's nothing here..."
     scene bg cc
-    show kai base at left
+    show kai base at sleft
     with fade
     show miwa dissm at offscreenright
     show misa basem at offscreenright
     kai "And?"
-    show miwa dissm at right with move
+    show miwa dissm at sright with move
     miw "Dead end..."
     #Misaki sad
-    show misa sadm at right 
-    show miwa base at center
+    show misa sadm at sright 
+    show miwa base at scenter
     with move
     miw "Hey..."
-    show miwa prop at center
+    show miwa prop
     miw "Don't worry! We'll find the thief."
+    show kai skep
     kai "Miwa."
     kai "Maybe you're better off looking for the thief outside."
     #miwa mirrored
-    show miwa basem at center
+    show miwa basem at scenterm
     miw "Good plan!"
-    show miwa thinkm at left
+    show miwa thinkm at sleftm
     show kai base at center
     with move
     miw "Where should I start...hm..."
@@ -247,13 +289,15 @@ label investigateconclude:
     show miwa thinkm at offscreenleft with move
     kai "Tokura!"
     show misa basem
-    show kai base at left with move
+    show kai base at sleft with move
     #Kai asking who should go with Miwa
     kai "Someone should go with him, the last time I left him to his own devices, I found him tied up by the backstreet boys."
     show misa smilem
     mis "Tell me why?"
     kai "No."
+    show kai annoy
     kai "Ain't nothing but a headache."
+    show kai base
     kai "Shall I go?"
     show misa basem
     mis "Hm..."
@@ -265,10 +309,10 @@ label investigateconclude:
         
 label misakiroute:
     scene bg park
-    show miwa base at center
-    show misa base at left
+    show miwa base at scenter
+    show misa base at sleft
     mis "Miwa, I'm coming with you!"
-    show miwa shockm
+    show miwa shockm at scenterm
     miw "Ah?"
     show miwa basem
     miw "Oh, I didn't realise you'd want to find this guy too"
@@ -291,19 +335,19 @@ label misakiroute:
     miw "Alright, there might be a place where I think they might know something..."
     scene bg under with fade
     #Visiting Jun
-    show miwa base at center
-    show misa base at left
+    show miwa base at scenter
+    show misa base at sleft
     miw "This is the spot."
-    show miwa basem
+    show miwa basem at scenterm
     mis "This place... they hold underground fights here, don't they?"
     mis "How did you find it in the first place?"
     jun "Miwa!"
-    show miwa shock at center
+    show miwa shock at scenter
     jun "I haven't seen you around lately!"
     jun "Did you mind being tied up that much?"
     show misa anno
     mis "Oh, I suposse that answers my question."
-    show miwa appalm at center
+    show miwa appalm at scenterm
     miw "What? "
     extend "No!"
     miw "It's not what it sounds like!"
@@ -314,13 +358,18 @@ label misakiroute:
     mis "Too late for that."
     jun "You really have the best friends."
     jun "But if you've come to deliver another one of his girlfriends, he isn't here right now."
-    show misa base
+    show misa base at scenter
     show miwa embar
     miw "I'm not, don't worry."
     show miwa think
     miw "Where to start explaining..."
     #screen fades to black for a bit
-    show miwa prop
+    scene bg black with fade
+    $ renpy.pause(10)
+    scene bg under
+    show misa base at sleft
+    show miwa prop at scenter
+    with fade
     miw "So, we figured you might know something..."
     show miwa base
     jun "Hm..."
@@ -331,7 +380,7 @@ label misakiroute:
     jun "You might want to ask them if they know anything."
     show miwa think
     miw "I see..."
-    show miwa basem
+    show miwa basem at scenterm
     miw "Thanks!"
     jun "Just visit more often, will you?"
     miw "Right."
@@ -458,20 +507,27 @@ label kairoute:
         return
     
 label kaichihoneymoon:
+    scene bg black
     "You've finished both endings, I guess I should give you what you came for..."
     "Alright, I'm ready."
     scene bg hotel with fade
     ai "Ah"
     ai "Kai-kun"
+    show kai base at left
+    #show aichi sbasm at right
     kai "Aichi,"
+    show kai skep
     extend "what the hell are you wearing?"
     ai "Kai-kun! That should be obvious!"
+    show kai anno
     #kai-kun looks disturbed now
     ai "Despite me identifying like a boy, I look like a girl, so therefore I like dressing like one!"
     ai "Kai-kun, don't you know anything about gender-politics?"
+    show kai conf
     kai "Eh..."
     ai "I knew I should've gone to Ren-san with this."
     ai "At the least he's mature enough to... deal with my needs."
+    show kai vcon
     kai "W-what?"
     ai "Sayonara, Kai-kun!"
     #aichi goes off-screen
@@ -480,28 +536,40 @@ label kaichihoneymoon:
     ai "Kai-kun?"
     #aichi moves on screen
     ai "April-fools, Kai-kun!"
+    show kai conf
     kai "What...?"
     ai "April-fools!"
+    show kai skep
     kai "This was fake."
+    show kai base
     extend " Good."
     ai "I didn't scare you too much, did I?"
+    show kai skep
     kai "No. You didn't."
     extend " But."
+    show kai anno
     extend "What was this about Ren being more mat-"
     ai "Ah, Kai-kun?"
     ai "Would you mind if I... slip into something more comfortable?"
+    show kai conf
     kai "-ure, what?"
     ai "I would like to go change into my regular clothes now,"
     extend "this is really embarassing to wear in public..."
+    show kai vcon
     kai "Eh."
+    show kai base
     kai "Yes, you do that!"
     #Aichi leaves
+    show kai vcon
     kai "(What the flying fuck?)"
     
     #hide scene bg hotel with fade
-    "Happy April Fools, everyone!"
-    "Credits: Story/Programming/Art: Wolthera (wolthera.tumblr.com) (go congratulate her, April the first is her birthday!)"
-    "Testing:"
-    ""
+    scene bg black
+    centered "Happy April Fools, everyone!"
+    centered "Credits: Story/Programming/Art: Wolthera (wolthera.tumblr.com)
+               (go congratulate her, April the first is her birthday!)"
+    centered "Sound:"
+    centered "Testing:"
+    centered ""
     
     return
